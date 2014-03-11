@@ -23,6 +23,16 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+var MemcachedStore = require('connect-memcached')(express);
+app.use( express.cookieParser() );
+app.use( express.session(
+	{
+		key: 'sid',
+		cookie: {},
+		store:new MemcachedStore()
+	}
+));
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
