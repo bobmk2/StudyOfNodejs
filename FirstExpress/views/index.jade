@@ -8,3 +8,10 @@ block content
 		a pen
 	p This is
 		| a car
+
+	select(name="countup")
+		- var count = 1;
+		while count < 4
+			option( value='count#{count}') #{count}個
+			- count++;
+		option(value='countMore') #{count}個以上
