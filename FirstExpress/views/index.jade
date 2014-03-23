@@ -1,17 +1,16 @@
 extends layout
 
 block content
-	h1= title
-	p Welcome to #{title}
-	p Hello #{world}
-	p This is
-		a pen
-	p This is
-		| a car
-
-	select(name="countup")
-		- var count = 1;
-		while count < 4
-			option( value='count#{count}') #{count}個
-			- count++;
-		option(value='countMore') #{count}個以上
+	.stories
+		each story in stories
+			include common/story
+	.pagination
+		ul
+			if page.previous
+				li: a(href=page.previous) ◀Prev
+			else
+				li.disabled: a ◀Prev
+			if page.next
+				li: a(href=page.next) Next▶
+			else
+				li.disabled: a Next▶

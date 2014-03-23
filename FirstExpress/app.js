@@ -30,36 +30,26 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-var MemcachedStore = require('connect-memcached')(express);
-app.use( express.cookieParser() );
-app.use( express.session(
-	{
-		key: 'sid',
-		cookie: {},
-		store:new MemcachedStore()
-	}
-));
-
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
 // ログインおよびログアウト
-app.get('/login', routes.login);
-app.post('/login', routes.login.post);
-app.get('/logout', routes.logout);
+//app.get('/login', routes.login);
+//app.post('/login', routes.login.post);
+//app.get('/logout', routes.logout);
 
 // 記事の作成
-app.get('/create', routes.create);
-app.post('/create', routes.create.post);
+//app.get('/create', routes.create);
+//app.post('/create', routes.create.post);
 
 // 記事の表示
-app.get('/:slug', routes.single);
+//app.get('/:slug', routes.single);
 app.get('/', routes.index);
 
 // ユーザ一覧の表示
-app.get('/users', routes.index);
+//app.get('/users', routes.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -7,7 +7,9 @@ var stories = require('../models/stories.js');
 
 
 exports.index = function (req, res) {
-//  res.render('index', { title: 'Express', world: 'Express World ;)' });
+	//res.render('index', { title: 'Express', world: 'Express World ;)' });
+	console.log( "exports.index" );
+
 	var pageNum = Number(req.query.page) || 1;
 	var count = 10;
 	var from = count * ( pageNum - 1 );
