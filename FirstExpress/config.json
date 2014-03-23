@@ -1,0 +1,14 @@
+{
+	"databaseAuth": {
+		"user" : "dev_user",
+		"database" : "test",
+		"password" : "asdf1234",
+		"host" : "localhost",
+		"port" : "3306"
+	},
+	"sessionAuth" : {
+		"host" : "localhost",
+		"port" : 11211
+	},
+	"cookieHash" : "asdfghjkl123456789"
+}
