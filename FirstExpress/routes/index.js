@@ -8,7 +8,7 @@ var stories = require('../models/stories.js');
 
 exports.index = function (req, res) {
 	//res.render('index', { title: 'Express', world: 'Express World ;)' });
-	console.log( "exports.index" );
+	console.log( "start index" );
 
 	var pageNum = Number(req.query.page) || 1;
 	var count = 10;
@@ -40,6 +40,12 @@ exports.index = function (req, res) {
 			}
 		}
 
+
+		user = null;
+		if ( req.session && req.session.user ) {
+			user = req.session.user;
+		}
+
 		// テンプレートに与えるパラメータを用意する
 		var params = {
 			page: {
@@ -47,12 +53,15 @@ exports.index = function (req, res) {
 				next: nextPage,
 				previous: previousPage
 			},
-			user: req.session.user || null,
+			user: user,
 			stories: items,
 			request: req
 		};
 		res.render( 'index', params );
+		console.log( "render index finisihed" );
+
 	});
+
 };
 
 // ログイン処理を行う
@@ -152,9 +161,14 @@ exports.single = function( req, res ) {
 			res.send(404);
 			return;
 		}
+
+		console.log( req.session );
+
+		user = req.session.user || null;
+
 		res.render('single', {
 			page: { title: 'nblog'},
-			user: req.session.user || null,
+			user: user,
 			story: item
 		})
 	});
