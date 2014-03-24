@@ -48,7 +48,7 @@ if ('development' == app.get('env')) {
 // ログインおよびログアウト
 app.get('/login', routes.login);
 app.post('/login', routes.login.post);
-//app.get('/logout', routes.logout);
+app.get('/logout', routes.logout);
 
 // 記事の作成
 app.get('/create', routes.create);
