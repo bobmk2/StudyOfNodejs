@@ -94,6 +94,7 @@ exports.login.post = function( req, res ) {
 		}
 
 		// 認証に成功
+
 		req.session.user = {
 			uid: userInfo.uid,
 			name: userInfo.name
@@ -116,15 +117,15 @@ exports.logout = function( req, res ) {
 // 記事の作成
 exports.create = function( req, res ) {
 	if ( req.session.user == undefined ) {
-		res.redirect(403, '/');
+		res.redirect( '/login' );
 		return;
 	}
-	res.render('create-story', {
+	res.render('create', {
 		story:{},
 		page: { title: 'New Story'},
 		user: req.session.user,
 		error: 200
-	})
+	});
 };
 
 // 記事の作成フォームを受け付ける
