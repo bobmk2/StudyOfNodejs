@@ -6,15 +6,10 @@ html
 		script(src='/js/bootstrap.min.js')
 		link(rel='stylesheet', href='/css/non-responsive.css')
 		link(rel='stylesheet', href='/css/bootstrap.min.css')
+		block local_link
 
 	body
 		include common/navbar
-		.container
-			.page-header
-				h1: a(herf='/') nblog
-					img(src='/img/bear.png' style='padding-left:10px')
-				p.lead simple blog system
-				button.btn.btn-default.btn-xs( type="button" ): span.glyphicon.glyphicon-star Star
 		.container
 			#main
 				block content
