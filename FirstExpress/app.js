@@ -9,6 +9,7 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var config = require('./config.json');
+var MemcachedStore = require('connect-memcached')(express);
 
 var app = express();
 
@@ -16,22 +17,28 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use( express.cookieParser(config.cookieHash) );
+
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
 
-var MemcachedStore = require('connect-memcached')(express);
-app.use( express.cookieParser(config.cookieHash) );
 app.use( express.session(
 	{
-		key: 'session',
-		store: new MemcachedStore
+		secret: 'hoogehoge',
+		key: 'nblogssid',
+		cookie: {}
+//		よくわからんがstoreをMemcachedStoreのインスタンスを入れると動かない
+//		あまり情報も無いのでセッション周りは別の方法で管理するようにしよう
+//		store: new MemcachedStore()
 	}
 ));
+app.use(app.router);
+
 
 // development only
 if ('development' == app.get('env')) {
@@ -39,13 +46,13 @@ if ('development' == app.get('env')) {
 }
 
 // ログインおよびログアウト
-//app.get('/login', routes.login);
-//app.post('/login', routes.login.post);
+app.get('/login', routes.login);
+app.post('/login', routes.login.post);
 //app.get('/logout', routes.logout);
 
 // 記事の作成
-//app.get('/create', routes.create);
-//app.post('/create', routes.create.post);
+app.get('/create', routes.create);
+app.post('/create', routes.create.post);
 
 // 記事の表示
 //app.get('/:slug', routes.single);

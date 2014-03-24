@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	.container
+		Test
+		form.form(method='POST', action='/create' role='form' )
+			input(type='hidden', name='sid', value=story.sid)
+			.form-group
+				label(for="inputTitle") Title
+				input.form-control(type='text', id='inputTitle', name='title', value=story.title)
+			.form-group
+				label(for="inputSlug") Slug
+				input.form-control(type='text', id='inputSlug', name='slug', value=story.url )
+			.form-group
+				label(for="inputStoryBody") Story Body
+				textarea.form-control( rows='5', id='inputStoryBody', name='body' )
+			button.btn.btn-lg.btn-primary(type='submit', name='commit') Save Story
