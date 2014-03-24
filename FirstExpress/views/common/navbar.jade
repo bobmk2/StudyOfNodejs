@@ -8,12 +8,13 @@
 				span.icon-bar
 				span.icon-bar
 				span.icon-bar
-			a.navbar-brand(href="#") Project name
+			a.navbar-brand(href="/") nblog
+				img(src='/img/bear_s.png' style='padding-left:5px')
 		.navbar-collapse.collapse
 			ul.nav.navbar-nav
-				li.active: a(href="#") Home
-				li: a(href="#about") About
-				li: a(href="#contact") Contact
+				li.active: a(href="/") Home
+				li: a(href="/create") Create
+				li: a(href="#") Contact
 				li.dropdown
 					a.dropdown-toggle(href="#", data-toggle="dropdown") Dropdown
 						b.caret
@@ -22,6 +23,7 @@
 						li: a(href="#") Status
 						li.divider
 						li.dropdown-header Desert Fox
+						li: a(href="login") Login
 						li: a(href="#") Logout
 			ul.nav.navbar-nav.navbar-right
 				li: a(href="http://google.com") Google
