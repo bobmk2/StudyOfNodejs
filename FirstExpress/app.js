@@ -55,7 +55,7 @@ app.get('/create', routes.create);
 app.post('/create', routes.create.post);
 
 // 記事の表示
-//app.get('/:slug', routes.single);
+app.get('/:slug', routes.single);
 app.get('/', routes.index);
 
 // ユーザ一覧の表示

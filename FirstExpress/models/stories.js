@@ -53,6 +53,7 @@ stories.getBySid = function ( sid, callback ) {
 
 // slugを指定してデータベースから記事を取得する
 stories.getBySlug = function ( slug, callback ) {
+	console.log("slug:" + slug )
 	db.query( 'SELECT * FROM stories WHERE slug = ?;',
 	[slug], function(err,results,fields) {
 			db.end();

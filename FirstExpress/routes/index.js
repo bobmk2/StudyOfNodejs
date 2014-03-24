@@ -151,7 +151,7 @@ exports.create.post = function( req, res ) {
 
 // 単一記事の表示
 exports.single = function( req, res ) {
-	stories.getBySlug( req.param.slug, function ( err, item ) {
+	stories.getBySlug( req.params.slug, function ( err, item ) {
 		if ( err ) {
 			res.send(500);
 			console.log('cannot retrive stories');
