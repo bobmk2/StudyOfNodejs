@@ -54,6 +54,7 @@ exports.index = function (req, res) {
 				previous: previousPage
 			},
 			user: user,
+			active: 'home',
 			stories: items,
 			request: req
 		};
@@ -124,6 +125,7 @@ exports.create = function( req, res ) {
 		story:{},
 		page: { title: 'New Story'},
 		user: req.session.user,
+		active: 'create',
 		error: 200
 	});
 };

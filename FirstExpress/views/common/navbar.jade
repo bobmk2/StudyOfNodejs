@@ -12,19 +12,28 @@
 				img(src='/img/bear_s.png', style='padding-left:5px;')
 		.navbar-collapse.collapse
 			ul.nav.navbar-nav
-				li.active: a(href="/"): span.glyphicon.glyphicon-home Home
-				li: a(href="/create"): span.glyphicon.glyphicon-pencil Create
-				li: a(href="#"): span.glyphicon.glyphicon-earphone Contact
+				// TODO なんかもっと良い分け方とかあるのでは？
+				if active === 'home'
+					li.active: a(href="/"): span.glyphicon.glyphicon-home Home
+				else
+					li: a(href="/"): span.glyphicon.glyphicon-home Home
+				if active === 'create'
+					li.active: a(href="/create"): span.glyphicon.glyphicon-pencil Create
+				else
+					li: a(href="/create"): span.glyphicon.glyphicon-pencil Create
+				li.disabled: a(href="#"): span.glyphicon.glyphicon-earphone Contact
 				li.dropdown
 					a.dropdown-toggle(href="#", data-toggle="dropdown") Dropdown
 						b.caret
 					ul.dropdown-menu
 						li.dropdown-header Imperial Cross
-						li: a(href="#"): span.glyphicon.glyphicon-user Status
+						li.disabled: a(href="#"): span.glyphicon.glyphicon-user Status
 						li.divider
 						li.dropdown-header Desert Fox
-						li: a(href="login"): span.glyphicon.glyphicon-log-in Login
-						li: a(href="logout"): span.glyphicon.glyphicon-log-out Logout
+						unless user
+							li: a(href="login"): span.glyphicon.glyphicon-log-in Login
+						else
+							li: a(href="logout"): span.glyphicon.glyphicon-log-out Logout
 			ul.nav.navbar-nav.navbar-right
 				li: a(href="http://google.com") Google
 				li: a(href="http://yahoo.com") Yahoo!
